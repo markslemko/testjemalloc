@@ -4,8 +4,10 @@
 extern "C" {
 #endif
 
+#ifndef _WIN32
 /* Defined if __attribute__((...)) syntax is supported. */
 #define	JEMALLOC_HAVE_ATTR
+#endif 
 
 /* Support the experimental API. */
 #define	JEMALLOC_EXPERIMENTAL
@@ -132,8 +134,10 @@ extern "C" {
  * JEMALLOC_NO_DEMANGLE is defined (see jemalloc_mangle.h).
  */
 extern JEMALLOC_EXPORT const char	*je_malloc_conf;
+#ifndef _WIN32
 extern JEMALLOC_EXPORT void		(*je_malloc_message)(void *cbopaque,
     const char *s);
+#endif
 
 JEMALLOC_EXPORT void	*je_malloc(size_t size) JEMALLOC_ATTR(malloc);
 JEMALLOC_EXPORT void	*je_calloc(size_t num, size_t size)

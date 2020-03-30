@@ -68,7 +68,9 @@
  * Among other things, it must be possible to initialize a mutex without
  * triggering allocation in order for threaded allocation to be safe.
  */
+#ifndef _WIN32
 #define JEMALLOC_THREADED_INIT 
+#endif 
 
 /*
  * Defined if the pthreads implementation defines
@@ -78,7 +80,9 @@
 /* #undef JEMALLOC_MUTEX_INIT_CB */
 
 /* Defined if sbrk() is supported. */
+#ifndef _WIN32
 #define JEMALLOC_HAVE_SBRK 
+#endif
 
 /* Non-empty if the tls_model attribute is supported. */
 #define JEMALLOC_TLS_MODEL 
@@ -156,7 +160,9 @@
 /* #undef JEMALLOC_MREMAP */
 
 /* TLS is used to map arenas and magazine caches to threads. */
+#ifndef _WIN32
 #define JEMALLOC_TLS 
+#endif
 
 /*
  * JEMALLOC_IVSALLOC enables ivsalloc(), which verifies that pointers reside

@@ -48,4 +48,6 @@
 
 #ifndef JEMALLOC_HAS_RESTRICT
 #  define restrict
+#elif _WIN32
+#define restrict __restrict 
 #endif

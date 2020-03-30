@@ -130,7 +130,8 @@ bitmap_sfu(bitmap_t *bitmap, const bitmap_info_t *binfo)
 
 	i = binfo->nlevels - 1;
 	g = bitmap[binfo->levels[i].group_offset];
-	bit = ffsl(g) - 1;
+	bit = (size_t)ffsl(g) - 1;
+	if (bit == MAXSIZE_T) bit = 0;
 	while (i > 0) {
 		i--;
 		g = bitmap[binfo->levels[i].group_offset + bit];

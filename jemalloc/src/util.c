@@ -56,7 +56,11 @@ wrtmessage(void *cbopaque, const char *s)
 #endif
 }
 
+#ifdef _WIN32
+#define je_malloc_message wrtmessage
+#else
 JEMALLOC_EXPORT void	(*je_malloc_message)(void *, const char *s);
+#endif 
 
 /*
  * Wrapper around malloc_message() that avoids the need for

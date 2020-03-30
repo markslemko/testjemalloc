@@ -1,2 +1,5 @@
 include_directories(include)
+if ($<PLATFORM_ID:Windows>)
+include_directories(include/msvc_compat)
+endif ($<PLATFORM_ID:Windows>)
 add_subdirectory(src)

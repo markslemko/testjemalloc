@@ -6,6 +6,11 @@ set(CMAKE_CXX_STANDARD 14)
 add_subdirectory(jemalloc)
 include_directories(jemalloc/include)
 
+if (CMAKE_SYSTEM_NAME MATCHES Windows)
+message("including windows compatibility files")
+include_directories(jemalloc/include/msvc_compat)
+endif ()
+
 list(APPEND SOURCES
         jemalloc/src/arena.c
         jemalloc/src/base.c
