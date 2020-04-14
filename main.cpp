@@ -1,4 +1,5 @@
 #include <iostream>
+#include "rpmalloc_new_delete.h"
 #include "rpmalloc.h"
 
 int main() {
