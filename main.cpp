@@ -1,11 +1,14 @@
 #include <iostream>
-#include "jemalloc/jemalloc.h"
+#include "rpmalloc.h"
 
 int main() {
+    // initialize allocator
+    coherent_rpmalloc::rpmalloc_initialize();
+
     int size = 10;
 
     std::cout << "allocate\n";
-    int *p = (int *)je_malloc(size * sizeof(int));
+    int *p = (int *)coherent_rpmalloc::rpmalloc(size * sizeof(int));
 
     std::cout << "initialize\n";
     for (int i = 0; i<size; i++) {
@@ -18,7 +21,7 @@ int main() {
     }
 
     std::cout << "release\n";
-    je_free(p);
+    coherent_rpmalloc::rpfree(p);
 
     std::cout << "bad access\n";
     for (int i = 0; i<size; i++) {
@@ -27,5 +30,6 @@ int main() {
     std::cout << "done\n";
 
 
+    coherent_rpmalloc::rpmalloc_finalize();
     return 0;
 }
